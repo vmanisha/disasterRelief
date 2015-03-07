@@ -1,11 +1,11 @@
-link = 'ec2-52-10-211-130.us-west-2.compute.amazonaws.com'
+link = 'ec2-52-10-211-130.us-west-2.compute.amazonaws.com/api/'
 //get the users
 
 function getUsersInDanger()
 {
-	alert('In here');
+	//alert('In here');
 	$.ajax({
-	type: "POST",
+	type: "GET",
 	url : link,
 	data: "people",
 	success: updateMap
@@ -100,8 +100,51 @@ function updateMap(mlist)
 	
 }
 
-google.maps.event.addDomListener(window, 'load', getUsersInDanger);
+google.maps.event.addDomListener(window, 'load', drawCircle);
 
+
+function drawCircle()
+{
+	
+	var citymap = {};
+
+	citymap['London'] = {
+   center: new google.maps.LatLng(51.5072, 0.1275),
+   population: 9995837
+	}
+
+	var mapOptions = {
+    zoom: 4,
+    center: new google.maps.LatLng(50.09024, 0.002891),
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+   };
+
+   var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // Construct the circle for each value in citymap.
+  // Note: We scale the area of the circle based on the population.
+  for (var city in citymap) {
+    var populationOptions = {
+      strokeColor: '#FFFF33',
+      strokeOpacity: 0.5,
+      strokeWeight: 2,
+      fillColor: '#FFFF33',
+      fillOpacity: 0.35,
+      map: map,
+      center: citymap[city].center,
+      radius: Math.sqrt(citymap[city].population) * 100
+    };
+    // Add the circle for this city to the map.
+    cityCircle = new google.maps.Circle(populationOptions);
+
+
+	};
+
+	
+
+
+}
 
 
 function getPlace(lat, lng)
@@ -128,14 +171,6 @@ function getPlace(lat, lng)
 		} else {
 	}	
   });
-
-}
-
-
-function calAverage()
-{
-
-
 
 }
 
