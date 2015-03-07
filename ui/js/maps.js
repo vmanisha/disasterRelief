@@ -147,8 +147,6 @@ function drawCircle()
     // Add the circle for this city to the map.
     cityCircle = new google.maps.Circle(populationOptions);
 	};
-	
-	 setTimeout(continueExecution, 10000)
 		
 	getUsersInDanger()
 
