@@ -3,6 +3,7 @@ link = 'ec2-52-10-211-130.us-west-2.compute.amazonaws.com'
 
 function getUsersInDanger()
 {
+	alert('In here');
 	$.ajax({
 	type: "POST",
 	url : link,
@@ -50,8 +51,8 @@ function getAvgLatLong(markers)
 
 	for (i=0;i<markers.length;i++)
 	{
-		avgLat += markers[i]['lat'];
-		avgLong+= markers[i]['long'];
+		avgLat += markers[i]['latitude'];
+		avgLong+= markers[i]['longitude'];
 	}
 	
 	avgLat /= markers.length;
@@ -63,7 +64,7 @@ function getAvgLatLong(markers)
 
 function updateMap(mlist)
 {
-	markers = [{"lat": -25.36 ,"long": 131.04},{"lat": -30.36 ,"long": 151.04},{"lat": -35.36 ,"long": 171.04}];
+	markers = [{"latitude": -25.36 ,"longitude": 131.04},{"latitude": -30.36 ,"longitude": 151.04},{"latitude": -35.36 ,"longitude": 171.04}];
 
 	//markers = JSON.parse(mlist);
 	avg = getAvgLatLong(markers);
@@ -79,7 +80,7 @@ function updateMap(mlist)
 	
 	for (i=0;i<markers.length;i++)
 	{
-		latLong = new google.maps.LatLng(markers[i]['lat'],markers[i]['long']);
+		latLong = new google.maps.LatLng(markers[i]['latitude'],markers[i]['longitude']);
 		
 		var marker = new google.maps.Marker({
    	   position: latLong,
@@ -99,7 +100,7 @@ function updateMap(mlist)
 	
 }
 
-google.maps.event.addDomListener(window, 'load', updateMap);
+google.maps.event.addDomListener(window, 'load', getUsersInDanger);
 
 
 
