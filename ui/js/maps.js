@@ -1,4 +1,4 @@
-link = 'ec2-52-10-211-130.us-west-2.compute.amazonaws.com/api/'
+link = 'http://ec2-52-10-211-130.us-west-2.compute.amazonaws.com/api/'
 //get the users
 
 function getUsersInDanger()
@@ -6,8 +6,8 @@ function getUsersInDanger()
 	//alert('In here');
 	$.ajax({
 	type: "GET",
-	url : link,
-	data: "people",
+	url : link + "people",
+	//data: "people",
 	success: updateMap
 	
 	});
