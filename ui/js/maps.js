@@ -84,7 +84,7 @@ function updateMap(mlist)
 	
 	
 	//var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	
+	var count =0;
 	for (i=0;i<markers.length;i++)
 	{
 		if (markers[i]['latitude'] != null)
@@ -95,6 +95,7 @@ function updateMap(mlist)
    		   map: map,
    		   title: "p"+i		
 			});
+			count+=1;
 		}
   	}
   	
@@ -102,7 +103,7 @@ function updateMap(mlist)
 	
 	
 	//set the number of people
-	document.getElementById('people').innerHTML = markers.length;
+	document.getElementById('people').innerHTML = count;
 	document.getElementById('time').innerHTML = new Date();
 	getPlace(avg[0],avg[1]);
 	
