@@ -89,7 +89,7 @@ function updateMap(mlist)
 		});
   	}
   	
-  	//google.maps.event.trigger(map, 'resize');
+  	google.maps.event.trigger(map, 'resize');
 	
 	
 	//set the number of people
@@ -137,12 +137,12 @@ function drawCircle()
     };
     // Add the circle for this city to the map.
     cityCircle = new google.maps.Circle(populationOptions);
-
-
 	};
-
 	
-
+	for (i = 0 ; i < 50;i++)
+		continue;
+		
+	getUsersInDanger()
 
 }
 
