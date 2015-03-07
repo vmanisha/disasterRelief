@@ -148,8 +148,7 @@ function drawCircle()
     cityCircle = new google.maps.Circle(populationOptions);
 	};
 	
-	for (i = 0 ; i < 50;i++)
-		continue;
+	 setTimeout(continueExecution, 10000)
 		
 	getUsersInDanger()
 
