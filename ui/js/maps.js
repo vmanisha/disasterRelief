@@ -70,7 +70,6 @@ function getAvgLatLong(markers)
 
 function updateMap(mlist)
 {
-	alert(mlist)
 	//markers = [{"latitude": -25.36 ,"longitude": 131.04},{"latitude": -30.36 ,"longitude": 151.04},{"latitude": -35.36 ,"longitude": 171.04}];
 	markers = mlist	
 	markers = JSON.parse(mlist);
