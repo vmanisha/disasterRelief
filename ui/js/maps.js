@@ -1,6 +1,8 @@
 link = 'http://ec2-52-10-211-130.us-west-2.compute.amazonaws.com/api/'
 //get the users
 
+var map;
+
 function getUsersInDanger()
 {
 	//alert('In here');
@@ -51,8 +53,12 @@ function getAvgLatLong(markers)
 
 	for (i=0;i<markers.length;i++)
 	{
-		avgLat += markers[i]['latitude'];
-		avgLong+= markers[i]['longitude'];
+		
+		if (markers[i]['latitude']!=null)
+		{
+			avgLat += markers[i]['latitude'];
+			avgLong+= markers[i]['longitude'];
+		}
 	}
 	
 	avgLat /= markers.length;
@@ -67,7 +73,7 @@ function updateMap(mlist)
 	alert(mlist)
 	//markers = [{"latitude": -25.36 ,"longitude": 131.04},{"latitude": -30.36 ,"longitude": 151.04},{"latitude": -35.36 ,"longitude": 171.04}];
 	markers = mlist	
-	//markers = JSON.parse(mlist);
+	markers = JSON.parse(mlist);
 	avg = getAvgLatLong(markers);
 	
 	latLong = new google.maps.LatLng(avg[0],avg[1]);
@@ -76,18 +82,21 @@ function updateMap(mlist)
 	    zoom: 4,
 	    center: latLong
 	};
-
-	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	
+	
+	//var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	
 	for (i=0;i<markers.length;i++)
 	{
-		latLong = new google.maps.LatLng(markers[i]['latitude'],markers[i]['longitude']);
-		
-		var marker = new google.maps.Marker({
-   	   position: latLong,
-   	   map: map,
-   	   title: "p"+i		
-		});
+		if (markers[i]['latitude'] != null)
+		{
+			latLong = new google.maps.LatLng(markers[i]['latitude'],markers[i]['longitude']);
+			var marker = new google.maps.Marker({
+   		   position: latLong,
+   		   map: map,
+   		   title: "p"+i		
+			});
+		}
   	}
   	
   	google.maps.event.trigger(map, 'resize');
@@ -120,7 +129,7 @@ function drawCircle()
     mapTypeId: google.maps.MapTypeId.TERRAIN
    };
 
-   var map = new google.maps.Map(document.getElementById('map-canvas'),
+   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
   // Construct the circle for each value in citymap.
